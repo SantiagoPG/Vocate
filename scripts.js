@@ -70,103 +70,116 @@ const translations = {
 };
 
 function changeLanguage(lang) {
-    localStorage.setItem("language", lang);
-    updateTexts();
+  localStorage.setItem("language", lang);
+  updateTexts();
 }
 
 function updateTexts() {
-    const lang = localStorage.getItem("language") || "es";
-    const menuContent = document.getElementById("menu-content");
-    if (menuContent) {
-      menuContent.innerHTML = `
-        <div class="menu-card">
-          <h2>Cerveza Artesanal Vocate</h2>
-          <p>${translations[lang].description}</p>
-          <h3>${translations[lang].price}</h3>
-          <button onclick="openModal('Cerveza Artesanal Vocate')">${translations[lang].pedir}</button>
-        </div>
-      `;
-    }
-    
-    // Actualizar textos de la página principal
-    const cartaButton = document.querySelector('button[onclick="goToMenu()"]');
-    if (cartaButton) cartaButton.textContent = translations[lang].carta;
-    
-    const llamarLink = document.querySelector('a[href^="tel:"]');
-    if (llamarLink) llamarLink.textContent = `📞 ${translations[lang].llamar}`;
-    
-    const mapsLink = document.querySelector('a[href^="https://www.google.com/maps"]');
-    if (mapsLink) mapsLink.textContent = `📍 ${translations[lang].comoLlegar}`;
-    
-    const infoP = document.querySelector('.info p');
-    if (infoP) infoP.innerHTML = `<strong>${translations[lang].restaurante}</strong><br>${translations[lang].direccion}`;
-    
-    const footerP = document.querySelector('footer p');
-    if (footerP) footerP.innerHTML = `${translations[lang].cartaDigital} <span class="marca">Rezagoter</span>`;
+  const lang = localStorage.getItem("language") || "es";
+  const cartaButton = document.querySelector('button[onclick="goToMenu()"]');
+  if (cartaButton) cartaButton.textContent = translations[lang].carta;
+
+  const llamarLink = document.querySelector('a[href^="tel:"]');
+  if (llamarLink) llamarLink.textContent = `📞 ${translations[lang].llamar}`;
+
+  const mapsLink = document.querySelector('a[href^="https://www.google.com/maps"]');
+  if (mapsLink) mapsLink.textContent = `📍 ${translations[lang].comoLlegar}`;
+
+  const infoP = document.querySelector('.info p');
+  if (infoP) infoP.innerHTML = `<strong>${translations[lang].restaurante}</strong><br>${translations[lang].direccion}`;
+
+  const footerP = document.querySelector('footer p');
+  if (footerP) footerP.innerHTML = `${translations[lang].cartaDigital} <span class="marca">Rezagoter</span>`;
 }
 
 function goToMenu() {
-    window.location.href = "menu.html";
-}
-
-function openModal(productName) {
-    document.getElementById("modal-product-name").innerText = productName;
-    document.getElementById("order-modal").classList.remove("hidden");
+  window.location.href = "menu.html";
 }
 
 function closeModal() {
-    document.getElementById("order-modal").classList.add("hidden");
+  document.getElementById("order-modal").classList.add("hidden");
 }
 
 const telegramToken = "7640380344:AAEfQgNMn68tjc1yZ7Qo-uiz2MzogKMYMS4";
 const chatId = "-4830084753";
 
-document.getElementById("order-form").addEventListener("submit", function (e) {
-    e.preventDefault();
+// Escuchar eventos al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+  const quantityInputs = document.querySelectorAll(".quantity-input");
+  quantityInputs.forEach(input => {
+    input.addEventListener("input", updateOrderButtonVisibility);
+  });
 
-    const name = document.getElementById("customer-name").value.trim();
-    const table = document.getElementById("table-number").value.trim();
-    const product = document.getElementById("modal-product-name").textContent.trim();
+  document.getElementById("order-form").addEventListener("submit", sendOrder);
+});
 
-    if (!name || !table) {
-        alert("Por favor completa todos los campos.");
-        return;
+// Mostrar u ocultar el botón según cantidades
+function updateOrderButtonVisibility() {
+  const quantities = document.querySelectorAll(".quantity-input");
+  const shouldShow = Array.from(quantities).some(input => parseInt(input.value) > 0);
+  document.getElementById("confirm-order-btn").style.display = shouldShow ? "block" : "none";
+}
+
+// Enviar pedido a Telegram
+function sendOrder(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("customer-name").value.trim();
+  const table = document.getElementById("table-number").value.trim();
+  const comment = document.getElementById("order-comment").value.trim() || "...";
+
+  if (!name || !table) {
+    alert("Por favor completa todos los campos.");
+    return;
+  }
+
+  const products = [];
+  document.querySelectorAll(".menu-item").forEach(item => {
+    const title = item.querySelector("h2").textContent.trim();
+    const quantity = parseInt(item.querySelector("input").value);
+    const price = parseInt(item.querySelector("input").dataset.price);
+
+    if (quantity > 0) {
+      products.push({ name: title, quantity, price });
     }
+  });
 
-    const message = `🧾 *Nuevo pedido recibido:*\n🍽️ Producto: *${product}*\n👤 Nombre: *${name}*\n🪑 Mesa: *${table}*`;
+  if (products.length === 0) {
+    alert("Selecciona al menos un producto.");
+    return;
+  }
 
-    // Enviar mensaje a Telegram
-    fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            chat_id: chatId,
-            text: message,
-            parse_mode: "Markdown",
-        }),
+  let message = `🧾 *Nuevo pedido:*\n👤 Nombre: *${name}*\n🪑 Mesa: *${table}*\n📝 Comentario: _${comment}_\n\n📦 *Productos:*`;
+  let total = 0;
+
+  products.forEach(p => {
+    const subtotal = p.quantity * p.price;
+    message += `\n- ${p.name} x${p.quantity} = $${subtotal.toLocaleString()}`;
+    total += subtotal;
+  });
+
+  message += `\n\n💵 *Total: $${total.toLocaleString()}*`;
+
+  // Enviar a Telegram
+  fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: message,
+      parse_mode: "Markdown"
     })
-        .then((response) => {
-            if (response.ok) {
-                alert("✅ Pedido enviado correctamente.");
-                closeModal();
-                document.getElementById("order-form").reset();
-            } else {
-                throw new Error("Error al enviar a Telegram.");
-            }
-        })
-        .catch((error) => {
-            console.error(error);
-            alert("❌ No se pudo enviar el pedido. Intenta de nuevo.");
-        });
-});
-
-// Asegurarse de que changeLanguage esté disponible globalmente
-window.changeLanguage = changeLanguage;
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Cargar el idioma guardado o usar español por defecto
-    const savedLang = localStorage.getItem("language") || "es";
-    updateTexts();
-});
+  })
+    .then(response => {
+      if (!response.ok) throw new Error("Error al enviar a Telegram");
+      alert("✅ Pedido enviado correctamente.");
+      document.getElementById("order-form").reset();
+      document.querySelectorAll(".quantity-input").forEach(input => input.value = 0);
+      updateOrderButtonVisibility();
+      closeModal();
+    })
+    .catch(err => {
+      console.error(err);
+      alert("❌ Hubo un problema al enviar el pedido.");
+    });
+}
