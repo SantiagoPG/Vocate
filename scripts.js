@@ -54,7 +54,7 @@ function closeModal() {
 }
 
 const telegramToken = "7640380344:AAEfQgNMn68tjc1yZ7Qo-uiz2MzogKMYMS4";
-const chatId = "43198400";
+const chatId = "-4830084753";
 
 document.getElementById("order-form").addEventListener("submit", function (e) {
   e.preventDefault();
