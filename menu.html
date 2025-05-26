@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menú - Las Chinas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="menu-header">
+    <h1>Menú</h1>
+  </header>
+
+  <main class="menu-container">
+    <!-- Plato 1 -->
+    <div class="menu-item">
+      <img src="images/cerveza.png" alt="Cerveza Vocate">
+      <div class="menu-info">
+        <h2>Ensalada Mediterránea</h2>
+        <p>Cultivada en la tierra, disfrutada en el alma.</p>
+      </div>
+      <div class="menu-price">
+        13,000 $
+        <br>
+        <button onclick="openModal('Ensalada Mediterránea')">Pedir</button>
+      </div>
+    </div>
+
+    <!-- Plato 2 
+    <div class="menu-item">
+      <img src="images/paella.jpg" alt="Paella de mariscos">
+      <div class="menu-info">
+        <h2>Paella de mariscos</h2>
+        <p>Arroz, calamares, mejillones, gambas y azafrán natural.</p>
+      </div>
+      <div class="menu-price">
+        14,00 €
+        <br>
+        <button onclick="openModal('Paella de mariscos')">Pedir</button>
+      </div>
+    </div>
+-->
+  </main>
+
+  <!-- Modal para confirmar pedido -->
+  <div id="order-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modal-product-name">Confirmar pedido</h2>
+      <form id="order-form">
+        <label for="customer-name">Nombre:</label>
+        <input type="text" id="customer-name" required />
+
+        <label for="table-number">Número de mesa:</label>
+        <input type="number" id="table-number" required />
+
+        <button type="submit">Enviar pedido</button>
+        <button type="button" onclick="closeModal()">Cancelar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="scripts.js"></script>
+</body>
+</html>
