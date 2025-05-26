@@ -13,33 +13,51 @@
 
   <main class="menu-container">
     <!-- Plato 1 -->
-    <div class="menu-item">
-      <img src="cerveza.png" alt="Cerveza Vocate">
-      <div class="menu-info">
-        <h2>Cerveza Vocate</h2>
-        <p>Cultivada en la tierra, disfrutada en el alma.</p>
-      </div>
-      <div class="menu-price">
-        13,000 $
-        <br>
-        <button onclick="openModal('Cerceza Vocate')">Pedir</button>
-      </div>
-    </div>
+    <!-- Plato 1 -->
+<div class="menu-item">
+  <img src="images/cerveza.png" alt="Cerveza Vocate">
+  <div class="menu-info">
+    <h2>Cerveza Vocate</h2>
+    <p>Esta bendita y refrescante cerveza
+      artesanal destaca por su equilibrio perfecto entre
+      cuerpo y sabor, con vibrantes notas cítricas que
+      despiertan los sentidos. Con un 5% de alcohol, es ideal
+      para quienes buscan disfrutar de una bebida ligera,
+      pero con carácter.</p>
+  </div>
+  <div class="menu-price">
+    13,000 $
+    <br>
+    <input type="number" min="0" value="0" class="quantity-input" data-product="Cerveza Vocate" data-price="13000" />
+  </div>
+  
+</div>
 
-    <!-- Plato 2 
-    <div class="menu-item">
-      <img src="images/paella.jpg" alt="Paella de mariscos">
-      <div class="menu-info">
-        <h2>Paella de mariscos</h2>
-        <p>Arroz, calamares, mejillones, gambas y azafrán natural.</p>
-      </div>
-      <div class="menu-price">
-        14,00 €
-        <br>
-        <button onclick="openModal('Paella de mariscos')">Pedir</button>
-      </div>
-    </div>
--->
+<!-- Plato 2 -->
+<div class="menu-item">
+  <img src="images/hamburguesa.png" alt="Hamburguesa">
+  <div class="menu-info">
+    <h2>Hamburguesa</h2>
+    <p>Carne de res 100%, condimentado con sal y pimienta, 
+      y cubierto con pepinillos, cebolla picada, ketchup y mostaza.</p>
+  </div>
+  <div class="menu-price">
+    20,000 $
+    <br>
+    <input type="number" min="0" value="0" class="quantity-input" data-product="Hamburguesa" data-price="20000" />
+  </div>
+</div>
+
+<!-- Botón para pedir -->
+<!-- Botón general para enviar pedido -->
+<div style="text-align:center; margin-top: 20px;">
+  <button id="confirm-order-btn" style="display:none;" onclick="document.getElementById('order-modal').classList.remove('hidden')">
+    Confirmar pedido
+  </button>
+</div>
+
+
+
   </main>
 
   <!-- Modal para confirmar pedido -->
@@ -52,6 +70,9 @@
 
         <label for="table-number">Número de mesa:</label>
         <input type="number" id="table-number" required />
+
+        <label for="order-comment">Comentario (opcional):</label>
+        <textarea id="order-comment" rows="3"></textarea>
 
         <button type="submit">Enviar pedido</button>
         <button type="button" onclick="closeModal()">Cancelar</button>
