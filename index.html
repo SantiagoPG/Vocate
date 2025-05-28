@@ -2,67 +2,47 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 - Página no encontrada</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f8f8f8;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 600px;
-    }
-
-    h1 {
-      font-size: 8rem;
-      color: #e74c3c;
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin: 20px 0;
-    }
-
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 30px;
-    }
-
-    a {
-      text-decoration: none;
-      background-color: #3498db;
-      color: white;
-      padding: 12px 25px;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-
-    a:hover {
-      background-color: #2980b9;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vocate</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>404</h1>
-    <h2>Página no encontrada</h2>
-    <p>Lo sentimos, la página que estás buscando no existe o ha sido movida.</p>
-    <a href="/">Volver al inicio</a>
+  <div class="header-image">
+    <!--
+    <img src="image.png" alt="Restaurante Vocate">
+    
+    <div class="phone-badge">
+      📞 302 3288318
+    </div> Plato 2 -->
   </div>
+
+  <main class="welcome">
+    <img class="logo" src="logo.png" alt="Vocate" />
+
+    <div class="flags">
+      <img src="https://flagcdn.com/es.svg" alt="Español" onclick="changeLanguage('es')" />
+      <img src="https://flagcdn.com/gb.svg" alt="English" onclick="changeLanguage('en')" />
+      <img src="https://flagcdn.com/de.svg" alt="Deutsch" onclick="changeLanguage('de')" />
+      <img src="https://flagcdn.com/fr.svg" alt="Français" onclick="changeLanguage('fr')" />
+    </div>
+
+    <button onclick="goToMenu()">Carta</button>
+
+    <section class="info">
+      <p><strong>Restaurante Vocate</strong><br>
+        Cl. 11 #12-42, Santa Fé de Antioquia, Antioquia</p>
+        
+      <div class="actions">
+        <a href="https://api.whatsapp.com/send/?phone=573105065688&text&type=phone_number&app_absent=0" class="action-button">💬 Domicilio</a>
+        <a href="https://www.google.com/maps/dir//Cl.+11+%2312-42,+Santa+Fé+de+Antioquia,+Antioquia/@6.5590535,-75.9115312,23211m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x8e45b61633591999:0xfa0a1725fc83d1c6!2m2!1d-75.8291369!2d6.5590337?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D" class="action-button">📍 Cómo llegar</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>Carta digital generada por <span class="marca">Rezagoter</span></p>
+    </footer>
+  </main>
+
+  <script src="scripts.js"></script>
 </body>
 </html>
