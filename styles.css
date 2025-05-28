@@ -7,7 +7,18 @@ body {
   }
   
   .header-image {
-    position: relative;
+    background-image: url('images/image.png'); /* Cambia la ruta según tu imagen */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 200px; /* Puedes ajustar la altura */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    background-color: #fb8637;
+    color: white;
+    padding: 0px 0;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
   }
   
   .header-image img {
@@ -93,9 +104,15 @@ body {
   }
 
   .menu-header {
+    background-image: url('images/banner.png'); /* Cambia la ruta según tu imagen */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 250px; /* Puedes ajustar la altura */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
     background-color: #ff904b;
     color: white;
-    padding: 20px 0;
+    padding: 0px 0;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
