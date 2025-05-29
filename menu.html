@@ -111,9 +111,10 @@
   <!-- Modal para confirmar pedido -->
   <div id="order-modal" class="modal hidden">
     <div class="modal-content">
-      <!-- React renderizará aquí -->
+      <h2>¿Confirmas tu pedido?</h2>
+      
+  
       <!-- Asegurarnos de que el formulario HTML esté visible -->
-      <h2 id="modal-product-name">Confirmar pedido</h2>
       <form id="order-form">
         <label for="customer-name">Nombre:</label>
         <input type="text" id="customer-name" required />
@@ -124,9 +125,8 @@
         <label for="order-comment">Comentario (opcional):</label>
         <textarea id="order-comment" rows="3"></textarea>
 
-        <button type="submit">Enviar pedido</button>
-        <button type="button" onclick="closeModal()">Cancelar</button>
-      </form>
+        <button id="send-order-btn">Enviar pedido</button>
+      <button onclick="closeModal()">Cancelar</button>
     </div>
   </div>
 
