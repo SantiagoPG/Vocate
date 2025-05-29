@@ -104,14 +104,12 @@ function closeModal() {
   document.getElementById("order-modal").classList.add("hidden");
 }
 
-// Nueva función para abrir el modal
 function openModal() {
-  console.log('openModal function called');
   document.getElementById("order-modal").classList.remove("hidden");
 }
-
 const telegramToken = "7640380344:AAEfQgNMn68tjc1yZ7Qo-uiz2MzogKMYMS4";
-const chatId = "-4830084753";
+const chatId = "-4861996433"
+
 
 document.addEventListener("DOMContentLoaded", () => {
   // Configura eventos para botones + / -
@@ -135,36 +133,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Expandir/cerrar descripción al hacer clic
   document.querySelectorAll('.menu-description').forEach(p => {
     p.addEventListener('click', () => {
       p.classList.toggle('expanded');
     });
   });
 
-  // Configura el evento submit del formulario
-  document.getElementById("order-form").addEventListener("submit", sendOrder);
-
-  // Inicializa visibilidad del botón al cargar
-  updateOrderButtonVisibility();
-
-  // Listener para el botón de confirmar pedido
-  // Asegurarse de que el botón existe antes de adjuntar el listener
+  // Botón para confirmar pedido abre el modal
   const confirmButton = document.getElementById('confirm-order-btn');
-  console.log('Resultado de getElementById:', confirmButton);
   if (confirmButton) {
-    confirmButton.addEventListener('click', () => {
-      console.log('Confirm order button clicked'); // Log para verificar el click
-      openModal(); // Llama a la nueva función para abrir el modal
-    });
+    confirmButton.addEventListener('click', openModal);
   }
 
-  // Eliminar el bloque de React para el modal
-  // const reactOrderFormDiv = document.getElementById('react-order-form');
-  // if (reactOrderFormDiv) {
-  //   reactOrderFormDiv.innerHTML = '';
-  //   document.getElementById('order-form').style.display = 'block';
-  // }
+  // Botón dentro del modal que realmente envía el pedido
+  const sendBtn = document.getElementById('send-order-btn');
+  if (sendBtn) {
+    sendBtn.addEventListener('click', sendOrder);
+  }
+
+  updateOrderButtonVisibility();
 });
 
 function updateOrderButtonVisibility() {
@@ -172,10 +159,10 @@ function updateOrderButtonVisibility() {
     .some(span => parseInt(span.textContent, 10) > 0);
 
   const btn = document.getElementById("confirm-order-btn");
-  if (!btn) return; // Asegurarse de que el botón existe
+  if (!btn) return;
 
   if (hasQuantity) {
-    btn.style.display = "block"; // Usar 'block' en lugar de 'inline-block'
+    btn.style.display = "block";
     btn.textContent = `Confirmar pedido ($${getOrderTotal().toLocaleString()})`;
   } else {
     btn.style.display = "none";
@@ -185,7 +172,7 @@ function updateOrderButtonVisibility() {
 function getOrderTotal() {
   let total = 0;
   document.querySelectorAll('.quantity-stepper').forEach(stepper => {
-    const value = parseInt(stepper.querySelector('.quantity-value').textContent, 10);
+    const value = parseInt(stepper.querySelector(".quantity-value").textContent, 10);
     const price = parseInt(stepper.dataset.price, 10);
     total += value * price;
   });
@@ -193,7 +180,7 @@ function getOrderTotal() {
 }
 
 function sendOrder(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
 
   const name = document.getElementById("customer-name").value.trim();
   const table = document.getElementById("table-number").value.trim();
@@ -206,7 +193,13 @@ function sendOrder(e) {
 
   const products = [];
   document.querySelectorAll(".quantity-stepper").forEach(stepper => {
-    const title = stepper.querySelector("h2").textContent.trim();
+    const menuItem = stepper.closest('.menu-item');
+    if (!menuItem) return;
+
+    const titleElement = menuItem.querySelector(".menu-info h2");
+    if (!titleElement) return;
+
+    const title = titleElement.textContent.trim();
     const quantity = parseInt(stepper.querySelector(".quantity-value").textContent, 10);
     const price = parseInt(stepper.dataset.price, 10);
 
@@ -220,16 +213,24 @@ function sendOrder(e) {
     return;
   }
 
-  let message = `🧾 *Nuevo pedido:*\n👤 Nombre: *${name}*\n🪑 Mesa: *${table}*\n📝 Comentario: _${comment}_\n\n📦 *Productos:*`;
+  let message = `🧾 Nuevo pedido:
+👤 Nombre: ${name}
+🪑 Mesa: ${table}
+📝 Comentario: ${comment}
+
+📦 Productos:
+
+`;
+
   let total = 0;
 
   products.forEach(p => {
     const subtotal = p.quantity * p.price;
-    message += `\n- ${p.name} x${p.quantity} = $${subtotal.toLocaleString()}`;
+    message += `- ${p.name} x${p.quantity} = $${subtotal.toLocaleString()}\n`;
     total += subtotal;
   });
 
-  message += `\n\n💵 *Total: $${total.toLocaleString()}*`;
+  message += `💵 Total: $${total.toLocaleString()}`;
 
   fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
     method: "POST",
@@ -237,14 +238,12 @@ function sendOrder(e) {
     body: JSON.stringify({
       chat_id: chatId,
       text: message,
-      parse_mode: "Markdown"
     })
   })
   .then(response => {
     if (!response.ok) throw new Error("Error al enviar a Telegram");
     alert("✅ Pedido enviado correctamente.");
     document.getElementById("order-form").reset();
-    // Reiniciar cantidades en steppers a 0
     document.querySelectorAll(".quantity-value").forEach(span => span.textContent = "0");
     updateOrderButtonVisibility();
     closeModal();
