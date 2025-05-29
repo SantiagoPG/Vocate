@@ -6,11 +6,11 @@
   <title>Menú - Vocate</title>
   <link rel="stylesheet" href="styles.css">
   <!-- React y ReactDOM -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script> -->
+  <!-- <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> -->
 
   <!-- Babel para usar JSX directamente -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
 
 </head>
 <body>
@@ -104,14 +104,29 @@
     </div>
     <!-- Botón para confirmar pedido -->
     <div style="text-align:center; margin-top: 20px; width:100%;">
-      <button id="confirm-order-btn" style="display:none" onclick="confirmOrder()">Confirmar pedido</button>
+      <button id="confirm-order-btn" style="display:none">Confirmar pedido</button>
     </div>
   </main>
 
   <!-- Modal para confirmar pedido -->
   <div id="order-modal" class="modal hidden">
-    <div id="react-order-form" class="modal-content">
+    <div class="modal-content">
       <!-- React renderizará aquí -->
+      <!-- Asegurarnos de que el formulario HTML esté visible -->
+      <h2 id="modal-product-name">Confirmar pedido</h2>
+      <form id="order-form">
+        <label for="customer-name">Nombre:</label>
+        <input type="text" id="customer-name" required />
+
+        <label for="table-number">Número de mesa:</label>
+        <input type="number" id="table-number" required />
+
+        <label for="order-comment">Comentario (opcional):</label>
+        <textarea id="order-comment" rows="3"></textarea>
+
+        <button type="submit">Enviar pedido</button>
+        <button type="button" onclick="closeModal()">Cancelar</button>
+      </form>
     </div>
   </div>
 
