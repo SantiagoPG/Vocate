@@ -350,7 +350,7 @@ body {
   @media (max-width: 768px) {
     .menu-container {
       grid-template-columns: 1fr; /* Cambiar a una sola columna */
-      gap: 16px; /* Reducir espacio entre elementos */
+      gap: 36px; /* Reducir espacio entre elementos */
       padding: 15px; /* Ajustar padding */
       max-width: 100%; /* Usar todo el ancho disponible */
     }
