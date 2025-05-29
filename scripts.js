@@ -129,6 +129,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Expandir/cerrar descripción al hacer clic
+  document.querySelectorAll('.menu-description').forEach(p => {
+    p.addEventListener('click', () => {
+      p.classList.toggle('expanded');
+    });
+  });
+
   // Configura el evento submit del formulario
   document.getElementById("order-form").addEventListener("submit", sendOrder);
 
