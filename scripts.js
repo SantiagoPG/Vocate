@@ -104,6 +104,12 @@ function closeModal() {
   document.getElementById("order-modal").classList.add("hidden");
 }
 
+// Nueva función para abrir el modal
+function openModal() {
+  console.log('openModal function called');
+  document.getElementById("order-modal").classList.remove("hidden");
+}
+
 const telegramToken = "7640380344:AAEfQgNMn68tjc1yZ7Qo-uiz2MzogKMYMS4";
 const chatId = "-4830084753";
 
@@ -141,6 +147,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Inicializa visibilidad del botón al cargar
   updateOrderButtonVisibility();
+
+  // Listener para el botón de confirmar pedido
+  // Asegurarse de que el botón existe antes de adjuntar el listener
+  const confirmButton = document.getElementById('confirm-order-btn');
+  console.log('Resultado de getElementById:', confirmButton);
+  if (confirmButton) {
+    confirmButton.addEventListener('click', () => {
+      console.log('Confirm order button clicked'); // Log para verificar el click
+      openModal(); // Llama a la nueva función para abrir el modal
+    });
+  }
+
+  // Eliminar el bloque de React para el modal
+  // const reactOrderFormDiv = document.getElementById('react-order-form');
+  // if (reactOrderFormDiv) {
+  //   reactOrderFormDiv.innerHTML = '';
+  //   document.getElementById('order-form').style.display = 'block';
+  // }
 });
 
 function updateOrderButtonVisibility() {
@@ -148,8 +172,10 @@ function updateOrderButtonVisibility() {
     .some(span => parseInt(span.textContent, 10) > 0);
 
   const btn = document.getElementById("confirm-order-btn");
+  if (!btn) return; // Asegurarse de que el botón existe
+
   if (hasQuantity) {
-    btn.style.display = "inline-block";
+    btn.style.display = "block"; // Usar 'block' en lugar de 'inline-block'
     btn.textContent = `Confirmar pedido ($${getOrderTotal().toLocaleString()})`;
   } else {
     btn.style.display = "none";
