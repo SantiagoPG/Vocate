@@ -7,24 +7,36 @@ body {
   }
   
   .header-image {
-    background-image: url('images/image.png'); /* Cambia la ruta según tu imagen */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    height: 200px; /* Puedes ajustar la altura */
+    height: 150px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-    background-color: #fb8637;
     color: white;
-    padding: 0px 0;
+    padding: 0;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
   }
   
   .header-image img {
     width: 100%;
-    height: 180px;
+    height: 100%;
     object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding: 0;
+  }
+  
+  .header-image h1 {
+    position: relative;
+    z-index: 2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
   }
   
   .phone-badge {
@@ -103,19 +115,34 @@ body {
     color: green;
   }
 
-  .menu-header {
-    background-image: url('images/banner.png'); /* Cambia la ruta según tu imagen */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 250px; /* Puedes ajustar la altura */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+   .menu-header {
     background-color: #ff904b;
     color: white;
-    padding: 0px 0;
+    padding: 20px 0;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
+    position: relative;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+  }
+  
+  .menu-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding: 10px;
+  }
+  
+  .menu-header h1 {
+    position: relative;
+    z-index: 2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
   }
   
   .menu-container {
@@ -214,6 +241,53 @@ body {
     width: 50px;
     margin-top: 10px;
   }
+  .quantity-stepper {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    padding: 4px 12px;
+    justify-content: space-between;
+    margin-top: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
   
+  .stepper-btn {
+    background-color: #ff904b;       /* Color naranja (coherente con botones) */
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    width:30px;
+    height:30px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    margin: 5px;
+    padding:10px;
+    line-height:32px;
+    text-transform: uppercase;
+    float:left;
+  }
   
-      
+  .stepper-btn:hover {
+    background-color: #00a393;      /* Color turquesa en hover */
+    box-shadow: 0 4px 8px rgba(0,163,147,0.6);
+  }
+  
+  .quantity-value {
+    font-size: 20px;
+    width: 30px;
+    text-align: center;
+    color: #222;
+    user-select: none; /* Evitar selección accidental */
+    font-weight: 600;
+  }
+  
