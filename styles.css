@@ -146,20 +146,23 @@ body {
   }
   
   .menu-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
   }
   
   .menu-item {
-    display: flex;
-    align-items: center;
     background-color: #f8f8f8;
     border-radius: 10px;
     overflow: hidden;
     padding: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   
   .menu-item img {
@@ -173,6 +176,9 @@ body {
   .menu-info {
     flex-grow: 1;
     text-align: left;
+    max-width: 70%;
+    min-width: 150px;
+    flex-shrink: 1;
   }
   
   .menu-info h2 {
@@ -192,7 +198,29 @@ body {
     font-weight: bold;
     color: #ff904b;
     white-space: nowrap;
+    min-width: 120px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 5px;
   }
+  
+  .quantity-stepper {
+    min-width: 110px;
+    margin-top: 5px;
+    margin-left: auto;
+  }
+  
+  main.menu-container + div {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin: 20px auto;
+    width: 100%;
+  }
+  
   .modal.hidden {
     display: none;
   }
@@ -241,17 +269,6 @@ body {
     width: 50px;
     margin-top: 10px;
   }
-  .quantity-stepper {
-    display: flex;
-    align-items: center;
-    background: #fff;
-    border-radius: 25px;
-    border: 1px solid #ddd;
-    padding: 4px 12px;
-    justify-content: space-between;
-    margin-top: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  }
   
   .stepper-btn {
     background-color: #ff904b;       /* Color naranja (coherente con botones) */
@@ -291,3 +308,85 @@ body {
     font-weight: 600;
   }
   
+  .menu-description {
+    display: -webkit-box;
+    padding: 10px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    cursor: pointer;
+    transition: max-height 0.3s ease;
+    position: relative;
+    max-height: 2.8em;
+    line-clamp: 2;
+  }
+  .menu-description.expanded {
+    padding: 10px;
+    display: block;
+    max-height: 100vh;
+    overflow: visible;
+  }
+  .menu-description::after {
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, transparent, #f8f8f8 80%);
+    padding-left: 10px;
+    color: #888;
+    display: block;
+  }
+  .menu-description.expanded::after {
+    display: none;
+  }
+
+  .menu-block {
+    display: none;
+  }
+
+  /* --- Media Queries para Responsive --- */
+  @media (max-width: 768px) {
+    .menu-container {
+      grid-template-columns: 1fr; /* Cambiar a una sola columna */
+      gap: 16px; /* Reducir espacio entre elementos */
+      padding: 15px; /* Ajustar padding */
+      max-width: 100%; /* Usar todo el ancho disponible */
+    }
+
+    .menu-item {
+      flex-direction: column; /* Apilar imagen e info/precio */
+      align-items: flex-start;
+    }
+
+    .menu-item img {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+
+    .menu-info {
+      max-width: 100%; /* Usar todo el ancho disponible */
+      min-width: unset;
+    }
+
+    .menu-price {
+      flex-direction: row; /* Poner precio y stepper en fila */
+      align-items: center;
+      justify-content: space-between;
+      width: 100%; /* Asegurar que ocupe el ancho */
+      padding-left: 0;
+      padding-right: 0;
+      margin-top: 10px;
+    }
+
+    .quantity-stepper {
+      margin-left: 0; /* Resetear margin-left auto */
+    }
+
+    /* Asegurar que el div del botón siga abarcando todo el ancho en una columna */
+    main.menu-container + div {
+      width: auto; /* Ajustar ancho para móviles */
+      margin: 20px 15px; /* Ajustar margen para móviles */
+    }
+  }
