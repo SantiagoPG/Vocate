@@ -37,7 +37,7 @@ const translations = {
         descripcion: "Nachos de maíz bañados en cremosa salsa de queso cheddar derretido, coronados con rodajas de jalapeños en conserva para un toque picante irresistible. 🧀🔥 Perfectos para compartir."
       },
       mani: {
-        nombre: "Mani Salado",
+        nombre: "Maní Salado",
         descripcion: "Clásico maní crocante, ligeramente salado y perfecto para picar. Ideal como acompañamiento informal para disfrutar junto a una cerveza bien fría. 🧂 Sencillo, sabroso y siempre bienvenido."
       },
       aguacate: {
@@ -72,11 +72,11 @@ const translations = {
     confirmarPedidoTitulo: "Confirm your order?",
     productos: {
       cerveza: {
-        nombre: "Vocate Beer",
+        nombre: "Cerveza Vocate",
         descripcion: "This blessed and refreshing craft beer stands out for its perfect balance between body and flavor, with vibrant citrus notes that awaken the senses. With 5% alcohol, it's ideal for those seeking a light yet characterful drink."
       },
       mango: {
-        nombre: "Green Mango",
+        nombre: "Mango Biche",
         descripcion: "Fresh green mango strips served in a cup, accompanied by a lemon slice to enhance its acidic and refreshing taste. 🌱 Perfect as an appetizer or to enjoy with a cold craft beer."
       },
       nachos: {
@@ -84,11 +84,11 @@ const translations = {
         descripcion: "Corn nachos covered in creamy melted cheddar cheese sauce, topped with preserved jalapeño slices for an irresistible spicy touch. 🧀🔥 Perfect for sharing."
       },
       mani: {
-        nombre: "Salted Peanuts",
+        nombre: "Maní Salado",
         descripcion: "Classic crunchy peanuts, lightly salted and perfect for snacking. Ideal as an informal accompaniment to enjoy with a cold beer. 🧂 Simple, tasty, and always welcome."
       },
       aguacate: {
-        nombre: "Avocado stuffed with shrimp ceviche",
+        nombre: "Aguacate relleno con ceviche de camarón",
         descripcion: "Fresh avocado half filled with a vibrant mix of cooked shrimp, tomato, purple onion, bell pepper, and cilantro, all bathed in a touch of lemon juice. 🌊 A tropical explosion of freshness, smoothness, and texture."
       }
     }
@@ -119,11 +119,11 @@ const translations = {
     confirmarPedidoTitulo: "Bestellung bestätigen?",
     productos: {
       cerveza: {
-        nombre: "Vocate Bier",
+        nombre: "Cerveza Vocate",
         descripcion: "Dieses gesegnete und erfrischende Craft-Bier zeichnet sich durch seine perfekte Balance zwischen Körper und Geschmack aus, mit lebendigen Zitrusnoten, die die Sinne wecken. Mit 5% Alkohol ist es ideal für diejenigen, die ein leichtes, aber charaktervolles Getränk suchen."
       },
       mango: {
-        nombre: "Grüne Mango",
+        nombre: "Mango Biche",
         descripcion: "Frische grüne Mangostreifen in einer Tasse serviert, begleitet von einer Zitronenscheibe, um den säuerlichen und erfrischenden Geschmack zu verstärken. 🌱 Perfekt als Vorspeise oder zum Genießen mit einem kalten Craft-Bier."
       },
       nachos: {
@@ -131,11 +131,11 @@ const translations = {
         descripcion: "Maisnachos überzogen mit cremiger geschmolzener Cheddar-Käsesauce, belegt mit eingelegten Jalapeño-Scheiben für eine unwiderstehliche würzige Note. 🧀🔥 Perfekt zum Teilen."
       },
       mani: {
-        nombre: "Gesalzene Erdnüsse",
+        nombre: "Maní Salado",
         descripcion: "Klassische knusprige Erdnüsse, leicht gesalzen und perfekt zum Knabbern. Ideal als informelle Beilage zum Genießen mit einem kalten Bier. 🧂 Einfach, lecker und immer willkommen."
       },
       aguacate: {
-        nombre: "Avocado gefüllt mit Garnelen-Ceviche",
+        nombre: "Aguacate relleno con ceviche de camarón",
         descripcion: "Frische Avocadohälfte gefüllt mit einer lebendigen Mischung aus gekochten Garnelen, Tomaten, roten Zwiebeln, Paprika und Koriander, alles in einem Hauch von Zitronensaft gebadet. 🌊 Eine tropische Explosion von Frische, Weichheit und Textur."
       }
     }
@@ -166,11 +166,11 @@ const translations = {
     confirmarPedidoTitulo: "Confirmer votre commande ?",
     productos: {
       cerveza: {
-        nombre: "Bière Vocate",
+        nombre: "Cerveza Vocate",
         descripcion: "Cette bière bénie et rafraîchissante se distingue par son équilibre parfait entre corps et saveur, avec des notes vibrantes d'agrumes qui éveillent les sens. Avec 5% d'alcool, elle est idéale pour ceux qui recherchent une boisson légère mais avec du caractère."
       },
       mango: {
-        nombre: "Mangue Verte",
+        nombre: "Mango Biche",
         descripcion: "Lanières de mangue verte fraîche servies dans une coupe, accompagnées d'une tranche de citron pour rehausser son goût acide et rafraîchissant. 🌱 Parfait comme apéritif ou à déguster avec une bière artisanale bien fraîche."
       },
       nachos: {
@@ -178,11 +178,11 @@ const translations = {
         descripcion: "Nachos de maïs nappés d'une sauce crémeuse au fromage cheddar fondu, garnis de tranches de jalapeños marinés pour une touche épicée irrésistible. 🧀🔥 Parfait pour partager."
       },
       mani: {
-        nombre: "Cacahuètes Salées",
+        nombre: "Maní Salado",
         descripcion: "Cacahuètes croustillantes classiques, légèrement salées et parfaites pour grignoter. Idéales comme accompagnement informel à déguster avec une bière bien fraîche. 🧂 Simple, savoureux et toujours bienvenu."
       },
       aguacate: {
-        nombre: "Avocat farci au ceviche de crevettes",
+        nombre: "Aguacate relleno con ceviche de camarón",
         descripcion: "Demi-avocat frais farci d'un mélange vibrant de crevettes cuites, tomates, oignons rouges, poivrons et coriandre, le tout baigné d'une touche de jus de citron. 🌊 Une explosion tropicale de fraîcheur, de douceur et de texture."
       }
     }
